@@ -21,6 +21,7 @@
 		477B682C28DCAA130094F7B5 /* CollectionViewDelegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B682B28DCAA130094F7B5 /* CollectionViewDelegate+DataSource.swift */; };
 		477B682E28DCAA310094F7B5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B682D28DCAA310094F7B5 /* CollectionViewCell.swift */; };
 		477B683128DCB6220094F7B5 /* CharactersViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B683028DCB6220094F7B5 /* CharactersViewBuilder.swift */; };
+		477B683328DD91970094F7B5 /* SearchConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B683228DD91970094F7B5 /* SearchConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		477B682B28DCAA130094F7B5 /* CollectionViewDelegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewDelegate+DataSource.swift"; sourceTree = "<group>"; };
 		477B682D28DCAA310094F7B5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		477B683028DCB6220094F7B5 /* CharactersViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewBuilder.swift; sourceTree = "<group>"; };
+		477B683228DD91970094F7B5 /* SearchConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConstants.swift; sourceTree = "<group>"; };
 		88711078774AB0923B9D9090 /* Pods-RickAndMortyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.release.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.release.xcconfig"; sourceTree = "<group>"; };
 		97C20B1976131AFF3A0E98B7 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2CB7B8A89B8866B27CA00D6 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				477B682628DCA6C90094F7B5 /* Constants.swift */,
 				477B682928DCA8E80094F7B5 /* Strings.swift */,
+				477B683228DD91970094F7B5 /* SearchConstants.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				477B682E28DCAA310094F7B5 /* CollectionViewCell.swift in Sources */,
 				477B682428DCA6640094F7B5 /* CharactersViewModel.swift in Sources */,
 				477B682C28DCAA130094F7B5 /* CollectionViewDelegate+DataSource.swift in Sources */,
+				477B683328DD91970094F7B5 /* SearchConstants.swift in Sources */,
 				477B680628DC84970094F7B5 /* AppDelegate.swift in Sources */,
 				477B683128DCB6220094F7B5 /* CharactersViewBuilder.swift in Sources */,
 				477B682A28DCA8E80094F7B5 /* Strings.swift in Sources */,

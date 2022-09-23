@@ -80,6 +80,7 @@ final class CharactersViewController: UIViewController {
         
         collectionView.delegate = delegateAndDataSource
         collectionView.dataSource = delegateAndDataSource
+        searchBar.delegate = self
     }
 
     func setUpView() {
@@ -121,6 +122,18 @@ final class CharactersViewController: UIViewController {
 }
 
 // MARK: Extensions
+
+extension CharactersViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.endEditing(true)
+        
+        viewModel?.fetchSearch(searchText: searchBar.text!)
+        
+        searchBar.text = nil
+    }
+}
 
 extension CharactersViewController: CharactersViewModelOutput {
     func updateData(characters: [Character]) {
