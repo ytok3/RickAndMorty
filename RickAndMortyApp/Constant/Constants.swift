@@ -11,9 +11,9 @@ struct Constants {
     
     static let BASE_URL = "https://rickandmortyapi.com/api"
     
+    static let NAME = "/?name="
     static let CHARACTERS = "/character"
     static let EPISODE = "/episode"
-    
 }
 
 extension Constants {
@@ -21,7 +21,7 @@ extension Constants {
         URL(string: BASE_URL + CHARACTERS)
     }
     
-    static func generateSearch(with searchPath: SearchPath, searchText: String) -> URL? {
-        URL(string: BASE_URL + CHARACTERS + searchPath.rawValue + searchText)
+    static func generateFilter(with filterName: String) -> URL? {
+        URL(string: BASE_URL + CHARACTERS + NAME + filterName)
     }
 }

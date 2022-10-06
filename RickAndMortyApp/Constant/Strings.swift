@@ -9,9 +9,9 @@ import Foundation
 
 extension Constants {
     class Strings {
-        static let CELL = "Cell"
-        static let SEARCH = "Search.. name or status "
-        static let NO_RESULTS = "There were no results."
-        static let CANCEL_FILTER = "Cancel Filter"
+        static let Cell = "Cell"
+        static let Search = "Search.. (just name)"
+        static let Cancel_Filter = "Cancel Filter"
+        static let No_Result =  "No results found! Please try again.."
     }
 }

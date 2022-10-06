@@ -18,7 +18,7 @@ final class CharactersViewController: UIViewController {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = Constants.Strings.SEARCH
+        searchBar.placeholder = Constants.Strings.Search
         searchBar.sizeToFit()
         return searchBar
     }()
@@ -29,18 +29,20 @@ final class CharactersViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
-        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: Constants.Strings.CELL)
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: Constants.Strings.Cell)
         return collectionView
     }()
     
-    private let noResult: UILabel = {
+    private let noResults: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
-        label.text = Constants.Strings.NO_RESULTS
+        label.text = Constants.Strings.No_Result
+        label.textAlignment = .center
         return label
     }()
+             
     
     // MARK: Properties
     
@@ -66,9 +68,12 @@ final class CharactersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Rick And Morty"
+        
         viewModel?.output  = self
         viewModel?.fetchCharacters()
         
+        navController()
         setUpDelegate()
         setUpView()
         
@@ -76,19 +81,31 @@ final class CharactersViewController: UIViewController {
     
     // MARK: Funcs
     
+    func navController() {
+
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(
+            title: Constants.Strings.Cancel_Filter,
+            style: .plain,
+            target: self,
+            action: #selector(cancelFilter)
+        )
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
     func setUpDelegate() {
         
         collectionView.delegate = delegateAndDataSource
         collectionView.dataSource = delegateAndDataSource
         searchBar.delegate = self
+        
     }
 
     func setUpView() {
         
-        noResult.isHidden = true
+        noResults.isHidden = true
         
         view.backgroundColor = .white
-        view.addSubview(noResult)
+        view.addSubview(noResults)
         view.addSubview(searchBar)
         view.addSubview(collectionView)
         
@@ -97,20 +114,20 @@ final class CharactersViewController: UIViewController {
     
     func setUpConstraint() {
         
-        noResult.snp.makeConstraints { make in
+        noResults.snp.makeConstraints { make in
             make.centerX.equalTo(view.snp.centerX)
             make.centerY.equalTo(view.snp.centerY)
             make.height.equalTo(50)
-            make.width.equalTo(200)
+            make.width.equalTo(view.snp.width)
         }
-        
+                     
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.left.equalTo(view).offset(5)
             make.right.equalTo(view).offset(-5)
             make.centerX.equalTo(view.snp.centerX)
         }
-        
+
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.left.equalTo(view).offset(5)
@@ -119,23 +136,39 @@ final class CharactersViewController: UIViewController {
             make.centerX.equalTo(view.snp.centerX)
         }
     }
+    
+    @objc func cancelFilter() {
+    
+        updateData(characters: viewModel?.reloadCharacters ?? [])
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        collectionView.isHidden = false
+    }
 }
 
 // MARK: Extensions
 
 extension CharactersViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        searchBar.endEditing(true)
-        
-        viewModel?.fetchSearch(searchText: searchBar.text!)
-        
-        searchBar.text = nil
-    }
-}
+
+     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+         
+         navigationItem.rightBarButtonItem?.isEnabled = true
+         
+         searchBar.endEditing(true)
+
+         viewModel?.fetchFilter(filter: searchBar.text)
+
+         searchBar.text = nil
+         
+     }
+ }
 
 extension CharactersViewController: CharactersViewModelOutput {
+    func noResult() {
+        collectionView.isHidden = true
+        noResults.isHidden = false
+        navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+    
     func updateData(characters: [Character]) {
         delegateAndDataSource?.updateCollectionView(characters: characters)
         collectionView.reloadData()

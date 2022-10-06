@@ -9,21 +9,23 @@ import Foundation
 
 protocol CharactersViewModelOutput {
     func updateData(characters: [Character])
+    func noResult()
 }
 
 protocol CharactersViewModelProtocol {
     var output: CharactersViewModelOutput? {get set}
+    var reloadCharacters: [Character] {get set}
     func fetchCharacters()
-    func fetchSearch(searchText: String?)
+    func fetchFilter(filter: String?)
 }
 
 class  CharactersViewModel: CharactersViewModelProtocol {
     
     // MARK: Properties
-
+    
     private var service: ServiceManagerProtocol?
     var output: CharactersViewModelOutput?
-    
+    var reloadCharacters: [Character] = []
     
     // MARK: Init
     
@@ -39,6 +41,7 @@ class  CharactersViewModel: CharactersViewModelProtocol {
         service?.fetch(url: Constants.generateURL()!, completion: { (response: Result<CharacterList, Error>) in
             switch response {
             case .success(let charactersList):
+                self.reloadCharacters = charactersList.results ?? []
                 self.output?.updateData(characters: charactersList.results ?? [])
             case .failure(let error):
                 print(error.localizedDescription)
@@ -46,20 +49,13 @@ class  CharactersViewModel: CharactersViewModelProtocol {
         })
     }
     
-    func fetchSearch(searchText: String?) {
-        service?.fetch(url: Constants.generateSearch(with: .name, searchText: searchText!)!, completion: { (response: Result<CharacterList, Error>) in
+    func fetchFilter(filter: String?) {
+        service?.fetch(url: Constants.generateFilter(with: filter!)!, completion: { (response: Result<CharacterList, Error>) in
             switch response {
-            case .success(let searchList):
-                self.output?.updateData(characters: searchList.results ?? [])
+            case .success(let charactersList):
+                self.output?.updateData(characters: charactersList.results ?? [])
             case .failure:
-                self.service?.fetch(url: Constants.generateSearch(with: .status, searchText: searchText!)!, completion: { (response: Result<CharacterList, Error>) in
-                    switch response {
-                    case .success(let searchList):
-                        self.output?.updateData(characters: searchList.results ?? [])
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                })
+                self.output?.noResult()
             }
         })
     }

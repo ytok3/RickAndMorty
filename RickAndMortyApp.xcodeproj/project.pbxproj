@@ -21,7 +21,7 @@
 		477B682C28DCAA130094F7B5 /* CollectionViewDelegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B682B28DCAA130094F7B5 /* CollectionViewDelegate+DataSource.swift */; };
 		477B682E28DCAA310094F7B5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B682D28DCAA310094F7B5 /* CollectionViewCell.swift */; };
 		477B683128DCB6220094F7B5 /* CharactersViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B683028DCB6220094F7B5 /* CharactersViewBuilder.swift */; };
-		477B683328DD91970094F7B5 /* SearchConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B683228DD91970094F7B5 /* SearchConstants.swift */; };
+		479ADA7F28E43B1300CFC842 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479ADA7E28E43B1300CFC842 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 		477B682B28DCAA130094F7B5 /* CollectionViewDelegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewDelegate+DataSource.swift"; sourceTree = "<group>"; };
 		477B682D28DCAA310094F7B5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		477B683028DCB6220094F7B5 /* CharactersViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewBuilder.swift; sourceTree = "<group>"; };
-		477B683228DD91970094F7B5 /* SearchConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConstants.swift; sourceTree = "<group>"; };
+		479ADA7E28E43B1300CFC842 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		88711078774AB0923B9D9090 /* Pods-RickAndMortyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.release.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.release.xcconfig"; sourceTree = "<group>"; };
 		97C20B1976131AFF3A0E98B7 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2CB7B8A89B8866B27CA00D6 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,6 +87,7 @@
 		477B680428DC84970094F7B5 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				479ADA7D28E43AD300CFC842 /* Extension */,
 				477B682528DCA6B20094F7B5 /* Constant */,
 				477B682028DCA60A0094F7B5 /* Network */,
 				477B681D28DCA5C50094F7B5 /* Model */,
@@ -140,7 +141,6 @@
 			children = (
 				477B682628DCA6C90094F7B5 /* Constants.swift */,
 				477B682928DCA8E80094F7B5 /* Strings.swift */,
-				477B683228DD91970094F7B5 /* SearchConstants.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -160,6 +160,14 @@
 				477B683028DCB6220094F7B5 /* CharactersViewBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		479ADA7D28E43AD300CFC842 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				479ADA7E28E43B1300CFC842 /* Extensions.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		ED6EFC6A9D7117456EF1C8F4 /* Pods */ = {
@@ -288,11 +296,11 @@
 				477B682E28DCAA310094F7B5 /* CollectionViewCell.swift in Sources */,
 				477B682428DCA6640094F7B5 /* CharactersViewModel.swift in Sources */,
 				477B682C28DCAA130094F7B5 /* CollectionViewDelegate+DataSource.swift in Sources */,
-				477B683328DD91970094F7B5 /* SearchConstants.swift in Sources */,
 				477B680628DC84970094F7B5 /* AppDelegate.swift in Sources */,
 				477B683128DCB6220094F7B5 /* CharactersViewBuilder.swift in Sources */,
 				477B682A28DCA8E80094F7B5 /* Strings.swift in Sources */,
 				477B680828DC84970094F7B5 /* SceneDelegate.swift in Sources */,
+				479ADA7F28E43B1300CFC842 /* Extensions.swift in Sources */,
 				477B681C28DC85AD0094F7B5 /* CharactersViewController.swift in Sources */,
 				477B682728DCA6CA0094F7B5 /* Constants.swift in Sources */,
 				477B681F28DCA5F70094F7B5 /* Character.swift in Sources */,

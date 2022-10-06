@@ -109,7 +109,7 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     func configureCharacters(character: Character) {
-        
+
         self.characterImage.af.setImage(withURL: URL(string: (character.image!))!)
         self.name.text = character.name
         self.status.text = character.status

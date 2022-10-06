@@ -10,6 +10,7 @@ import UIKit
 class CollectionviewDelegateAndDataSource: NSObject {
     
     var characters: [Character] = []
+    var array: [String] = []
     
     // MARK: Func
     
@@ -27,12 +28,14 @@ extension CollectionviewDelegateAndDataSource: UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: Constants.Strings.CELL,
+            withReuseIdentifier: Constants.Strings.Cell,
             for: indexPath) as? CollectionViewCell else
         {
             return UICollectionViewCell() }
         cell.configureCharacters(character: characters[indexPath.item])
+
         return cell
     }
     
