@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol CollectionviewDelegateAndDataSourceOutput: AnyObject {
+    func didSelectItem(id: Int?)
+}
+
 class CollectionviewDelegateAndDataSource: NSObject {
     
     var characters: [Character] = []
     var array: [String] = []
+    weak var delegate: CollectionviewDelegateAndDataSourceOutput?
     
     // MARK: Func
     
@@ -37,6 +42,11 @@ extension CollectionviewDelegateAndDataSource: UICollectionViewDelegate, UIColle
         cell.configureCharacters(character: characters[indexPath.item])
 
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectItem(id: characters[indexPath.item].id)
+        print(characters[indexPath.item].id ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

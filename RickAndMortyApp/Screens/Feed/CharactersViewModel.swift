@@ -17,6 +17,7 @@ protocol CharactersViewModelProtocol {
     var reloadCharacters: [Character] {get set}
     func fetchCharacters()
     func fetchFilter(filter: String?)
+    func goToCharacterDetail(id: Int)
 }
 
 class  CharactersViewModel: CharactersViewModelProtocol {
@@ -26,11 +27,15 @@ class  CharactersViewModel: CharactersViewModelProtocol {
     private var service: ServiceManagerProtocol?
     var output: CharactersViewModelOutput?
     var reloadCharacters: [Character] = []
+    var coordinator: AppCoordinator?
     
     // MARK: Init
     
-    init(service: ServiceManagerProtocol) {
+    init(service: ServiceManagerProtocol,
+         coordinator: AppCoordinator
+    ) {
         self.service = service
+        self.coordinator = coordinator
     
         fetchCharacters()
     }
@@ -58,5 +63,9 @@ class  CharactersViewModel: CharactersViewModelProtocol {
                 self.output?.noResult()
             }
         })
+    }
+    
+    func goToCharacterDetail(id: Int) {
+        coordinator?.goToDetail(id: id)
     }
 }

@@ -96,6 +96,7 @@ final class CharactersViewController: UIViewController {
         
         collectionView.delegate = delegateAndDataSource
         collectionView.dataSource = delegateAndDataSource
+        delegateAndDataSource?.delegate = self
         searchBar.delegate = self
         
     }
@@ -172,5 +173,11 @@ extension CharactersViewController: CharactersViewModelOutput {
     func updateData(characters: [Character]) {
         delegateAndDataSource?.updateCollectionView(characters: characters)
         collectionView.reloadData()
+    }
+}
+
+extension CharactersViewController: CollectionviewDelegateAndDataSourceOutput {
+    func didSelectItem(id: Int?) {
+        viewModel?.goToCharacterDetail(id: id ?? 0)
     }
 }

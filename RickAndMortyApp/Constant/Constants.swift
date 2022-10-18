@@ -24,4 +24,8 @@ extension Constants {
     static func generateFilter(with filterName: String) -> URL? {
         URL(string: BASE_URL + CHARACTERS + NAME + filterName)
     }
+    
+    static func generateDetail(with characterId:  Int) -> URL? {
+        URL(string: BASE_URL + CHARACTERS + "/\(characterId)")
+    }
 }
