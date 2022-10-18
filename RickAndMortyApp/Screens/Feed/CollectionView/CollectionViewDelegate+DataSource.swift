@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol CollectionviewDelegateAndDataSourceOutput: AnyObject {
+protocol CollectionViewDelegateAndDataSourceOutput: AnyObject {
     func didSelectItem(id: Int?)
 }
 
-class CollectionviewDelegateAndDataSource: NSObject {
+class CollectionViewDelegateAndDataSource: NSObject {
     
     var characters: [Character] = []
     var array: [String] = []
-    weak var delegate: CollectionviewDelegateAndDataSourceOutput?
+    weak var delegate: CollectionViewDelegateAndDataSourceOutput?
     
     // MARK: Func
     
@@ -26,7 +26,7 @@ class CollectionviewDelegateAndDataSource: NSObject {
 
 // MARK: Extension
 
-extension CollectionviewDelegateAndDataSource: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CollectionViewDelegateAndDataSource: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return characters.count
@@ -46,7 +46,6 @@ extension CollectionviewDelegateAndDataSource: UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didSelectItem(id: characters[indexPath.item].id)
-        print(characters[indexPath.item].id ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

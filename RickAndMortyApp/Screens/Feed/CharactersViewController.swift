@@ -47,12 +47,12 @@ final class CharactersViewController: UIViewController {
     // MARK: Properties
     
     private var viewModel: CharactersViewModelProtocol?
-    private var delegateAndDataSource: CollectionviewDelegateAndDataSource?
+    private var delegateAndDataSource: CollectionViewDelegateAndDataSource?
 
     // MARK: Init
     
     init(viewModel: CharactersViewModelProtocol,
-         delegateAndDataSource: CollectionviewDelegateAndDataSource) {
+         delegateAndDataSource: CollectionViewDelegateAndDataSource) {
         self.viewModel = viewModel
         self.delegateAndDataSource = delegateAndDataSource
         
@@ -176,7 +176,7 @@ extension CharactersViewController: CharactersViewModelOutput {
     }
 }
 
-extension CharactersViewController: CollectionviewDelegateAndDataSourceOutput {
+extension CharactersViewController: CollectionViewDelegateAndDataSourceOutput {
     func didSelectItem(id: Int?) {
         viewModel?.goToCharacterDetail(id: id ?? 0)
     }

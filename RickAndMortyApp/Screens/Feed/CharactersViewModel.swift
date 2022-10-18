@@ -40,7 +40,7 @@ class  CharactersViewModel: CharactersViewModelProtocol {
         fetchCharacters()
     }
     
-    // MARK: Func
+    // MARK: Funcs
     
     func fetchCharacters() {
         service?.fetch(url: Constants.generateURL()!, completion: { (response: Result<CharacterList, Error>) in
