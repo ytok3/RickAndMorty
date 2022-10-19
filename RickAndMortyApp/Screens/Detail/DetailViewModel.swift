@@ -24,13 +24,16 @@ class DetailViewModel: DetailViewModelProtocol {
     private var service: ServiceManagerProtocol?
     var output: DetailViewModelOutput?
     private let id: Int?
+    weak var coordinator: Coordinator?
 
     // MARK: Init
     
     init(service: ServiceManagerProtocol,
-         id: Int?) {
+         id: Int?,
+         coordinator: Coordinator) {
         self.service = service
         self.id = id
+        self.coordinator = coordinator
         
         fetchDetail(id: id)
     }
@@ -38,7 +41,7 @@ class DetailViewModel: DetailViewModelProtocol {
     // MARK: Func
     
     func fetchDetail(id: Int?) {
-        service?.fetch(url: Constants.generateDetail(with: id ?? 1)!, completion: { (response: Result<CharacterDetail, Error>) in
+        service?.fetch(url: Constants.generateDetail(with: id!)!, completion: { (response: Result<CharacterDetail, Error>) in
             switch response {
             case .success(let characterDetail):
                 self.output?.selectCharacter(character: characterDetail)

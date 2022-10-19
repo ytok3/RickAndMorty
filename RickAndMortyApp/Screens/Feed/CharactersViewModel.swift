@@ -32,8 +32,7 @@ class  CharactersViewModel: CharactersViewModelProtocol {
     // MARK: Init
     
     init(service: ServiceManagerProtocol,
-         coordinator: AppCoordinator
-    ) {
+         coordinator: AppCoordinator) {
         self.service = service
         self.coordinator = coordinator
     

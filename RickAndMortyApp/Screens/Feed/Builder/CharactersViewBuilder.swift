@@ -11,7 +11,7 @@ import Alamofire
 
 enum CharactersViewBuilder {
     
-    static func build(appCoordinator: AppCoordinator) -> UIViewController {
+    static func build(appCoordinator: AppCoordinator) -> CharactersViewController {
         let service = ServiceManager(afSession: Alamofire.Session.default)
         let viewModel = CharactersViewModel(service: service, coordinator: appCoordinator)
         let delegateAndDataSource = CollectionViewDelegateAndDataSource()

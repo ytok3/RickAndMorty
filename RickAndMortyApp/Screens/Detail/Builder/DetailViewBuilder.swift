@@ -10,10 +10,10 @@ import UIKit
 import Alamofire
 
 enum DetailViewBuilder {
-    static func build(characterId: Int?) -> UIViewController {
+    static func build(characterId: Int?, coordinator: AppCoordinator) -> DetailViewController {
         let service = ServiceManager(afSession: Alamofire.Session.default)
-        let detailViewModel = DetailViewModel(service: service, id: characterId)
-        let vc = DetailViewController(viewModel: detailViewModel)
+        let viewModel = DetailViewModel(service: service, id: characterId, coordinator: coordinator)
+        let vc = DetailViewController(viewModel: viewModel)
         
         return vc
     }
