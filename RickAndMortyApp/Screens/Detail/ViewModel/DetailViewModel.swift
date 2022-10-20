@@ -24,6 +24,7 @@ class DetailViewModel: DetailViewModelProtocol {
     private var service: ServiceManagerProtocol?
     var output: DetailViewModelOutput?
     private let id: Int?
+    var lastEpisode: String?
     weak var coordinator: Coordinator?
 
     // MARK: Init

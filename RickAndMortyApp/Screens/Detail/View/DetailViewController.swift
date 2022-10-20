@@ -12,6 +12,14 @@ class DetailViewController: UIViewController {
     
     // MARK: View
     
+    private let indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        indicator.color = .black
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
     private let characterImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -160,15 +168,27 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel?.output = self
+        indicator.startAnimating()
+        dataIsCatch()
         
         setUpView()
         setUpConstraint()
     }
     
+    func dataIsCatch() {
+        characterImage.isHidden = false
+        verticalStack.isHidden = false
+    }
+    
+    func dataIsNotCatch() {
+        characterImage.isHidden = true
+        verticalStack.isHidden = true
+    }
+    
     func setUpView() {
         
         view.backgroundColor = .white
+        view.addSubview(indicator)
         view.addSubview(characterImage)
         view.addSubview(verticalStack)
         verticalStack.addSubview(name)
@@ -208,6 +228,13 @@ class DetailViewController: UIViewController {
     }
     
     func setUpConstraint() {
+        
+        indicator.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.centerY.equalTo(view.snp.centerY)
+            make.height.equalTo(50)
+            make.width.equalTo(50)
+        }
         
         characterImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(5)
@@ -277,5 +304,7 @@ extension DetailViewController: DetailViewModelOutput {
     
     func getEpisodeDetail(episode: Episode?) {
         configureEpisode(episode: episode!)
+        indicator.stopAnimating()
+        dataIsCatch()
     }
 }

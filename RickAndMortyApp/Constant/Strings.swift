@@ -11,7 +11,7 @@ extension Constants {
     class Strings {
         static let Cell = "Cell"
         static let Search = "Search.. (just name)"
-        static let Cancel_Filter = "Cancel Filter"
+        static let Cancel_Filter = "Clear Filter"
         static let No_Result =  "No results found! Please try again.."
         
         // MARK: DetailPage

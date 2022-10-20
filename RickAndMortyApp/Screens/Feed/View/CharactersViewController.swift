@@ -68,10 +68,7 @@ final class CharactersViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Rick And Morty"
-        
-        viewModel?.output  = self
-        viewModel?.fetchCharacters()
-        
+  
         navController()
         setUpDelegate()
         setUpView()
@@ -81,13 +78,13 @@ final class CharactersViewController: UIViewController {
     
     func navController() {
 
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(
             title: Constants.Strings.Cancel_Filter,
             style: .plain,
             target: self,
-            action: #selector(cancelFilter)
+            action: #selector(clearFilter)
         )
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
     }
     
     func setUpDelegate() {
@@ -95,7 +92,6 @@ final class CharactersViewController: UIViewController {
         collectionView.dataSource = delegateAndDataSource
         delegateAndDataSource?.delegate = self
         searchBar.delegate = self
-        
     }
 
     func setUpView() {
@@ -133,7 +129,7 @@ final class CharactersViewController: UIViewController {
         }
     }
     
-    @objc func cancelFilter() {
+    @objc func clearFilter() {
     
         updateData(characters: viewModel?.reloadCharacters ?? [])
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -147,7 +143,7 @@ extension CharactersViewController: UISearchBarDelegate {
 
      func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
          
-         navigationItem.rightBarButtonItem?.isEnabled = true
+         navigationItem.leftBarButtonItem?.isEnabled = true
          
          searchBar.endEditing(true)
          
@@ -161,7 +157,7 @@ extension CharactersViewController: CharactersViewModelOutput {
     func noResult() {
         collectionView.isHidden = true
         noResults.isHidden = false
-        navigationItem.rightBarButtonItem?.isEnabled = true
+        navigationItem.leftBarButtonItem?.isEnabled = true
     }
     
     func updateData(characters: [Character]) {

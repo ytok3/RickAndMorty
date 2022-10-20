@@ -14,6 +14,7 @@ enum DetailViewBuilder {
         let service = ServiceManager(afSession: Alamofire.Session.default)
         let viewModel = DetailViewModel(service: service, id: characterId, coordinator: coordinator)
         let vc = DetailViewController(viewModel: viewModel)
+        viewModel.output = vc
         
         return vc
     }

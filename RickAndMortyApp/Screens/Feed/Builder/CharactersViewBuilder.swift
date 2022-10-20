@@ -16,6 +16,8 @@ enum CharactersViewBuilder {
         let viewModel = CharactersViewModel(service: service, coordinator: appCoordinator)
         let delegateAndDataSource = CollectionViewDelegateAndDataSource()
         let vc = CharactersViewController(viewModel: viewModel, delegateAndDataSource: delegateAndDataSource)
+        viewModel.output = vc
+        viewModel.fetchCharacters()
         
         return vc
     }
