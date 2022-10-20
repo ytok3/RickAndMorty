@@ -14,6 +14,8 @@ extension Constants {
         static let Cancel_Filter = "Cancel Filter"
         static let No_Result =  "No results found! Please try again.."
         
+        // MARK: DetailPage
+        
         static let Status = "Status: "
         static let Species = "Species: "
         static let Episodes = "Number Of Episodes: "

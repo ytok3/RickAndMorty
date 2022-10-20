@@ -105,7 +105,6 @@ class CollectionViewCell: UICollectionViewCell {
         verticalStack.addArrangedSubview(species)
         
         characterImage.layer.cornerRadius = 5
-        
     }
     
     func configureCharacters(character: Character) {

@@ -38,7 +38,7 @@ class DetailViewModel: DetailViewModelProtocol {
         fetchDetail(id: id)
     }
     
-    // MARK: Func
+    // MARK: Funcs
     
     func fetchDetail(id: Int?) {
         service?.fetch(url: Constants.generateDetail(with: id!)!, completion: { (response: Result<CharacterDetail, Error>) in

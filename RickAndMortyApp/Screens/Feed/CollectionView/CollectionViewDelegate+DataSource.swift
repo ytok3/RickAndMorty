@@ -13,8 +13,9 @@ protocol CollectionViewDelegateAndDataSourceOutput: AnyObject {
 
 class CollectionViewDelegateAndDataSource: NSObject {
     
+    // MARK: Properties
+    
     var characters: [Character] = []
-    var array: [String] = []
     weak var delegate: CollectionViewDelegateAndDataSourceOutput?
     
     // MARK: Func
@@ -40,7 +41,6 @@ extension CollectionViewDelegateAndDataSource: UICollectionViewDelegate, UIColle
         {
             return UICollectionViewCell() }
         cell.configureCharacters(character: characters[indexPath.item])
-
         return cell
     }
     

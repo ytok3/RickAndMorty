@@ -42,7 +42,6 @@ final class CharactersViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-             
     
     // MARK: Properties
     
@@ -76,7 +75,6 @@ final class CharactersViewController: UIViewController {
         navController()
         setUpDelegate()
         setUpView()
-        
     }
     
     // MARK: Funcs
@@ -93,7 +91,6 @@ final class CharactersViewController: UIViewController {
     }
     
     func setUpDelegate() {
-        
         collectionView.delegate = delegateAndDataSource
         collectionView.dataSource = delegateAndDataSource
         delegateAndDataSource?.delegate = self
@@ -102,9 +99,7 @@ final class CharactersViewController: UIViewController {
     }
 
     func setUpView() {
-        
         noResults.isHidden = true
-        
         view.backgroundColor = .white
         view.addSubview(noResults)
         view.addSubview(searchBar)
@@ -155,11 +150,10 @@ extension CharactersViewController: UISearchBarDelegate {
          navigationItem.rightBarButtonItem?.isEnabled = true
          
          searchBar.endEditing(true)
-
+         
          viewModel?.fetchFilter(filter: searchBar.text)
 
          searchBar.text = nil
-         
      }
  }
 

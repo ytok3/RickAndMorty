@@ -45,7 +45,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.backgroundColor = .white
         return label
@@ -56,7 +56,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.backgroundColor = .white
         return label
@@ -67,7 +67,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.backgroundColor = .white
         return label
@@ -78,7 +78,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.backgroundColor = .white
         return label
@@ -89,7 +89,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.backgroundColor = .white
         return label
@@ -100,7 +100,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.backgroundColor = .white
         return label
@@ -122,7 +122,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.backgroundColor = .white
         return label
@@ -133,7 +133,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.backgroundColor = .white
         return label
@@ -164,7 +164,6 @@ class DetailViewController: UIViewController {
         
         setUpView()
         setUpConstraint()
-
     }
     
     func setUpView() {

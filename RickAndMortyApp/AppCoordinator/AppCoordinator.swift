@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol Coordinator: AnyObject {
-    var navigationController: UINavigationController? { get set }
+    var navigationController: UINavigationController? {get set}
     func goToDetail(id: Int?)
     func start()
 }
@@ -26,7 +26,7 @@ class AppCoordinator: Coordinator {
         self.navigationController = navCon
     }
     
-    // MARK: Func
+    // MARK: Funcs
     
     func start() {
         navigationController?.pushViewController(CharactersViewBuilder.build(appCoordinator: self), animated: false)
