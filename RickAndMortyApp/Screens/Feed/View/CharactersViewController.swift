@@ -9,10 +9,19 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SnapKit
+import DropDown
 
 final class CharactersViewController: UIViewController {
     
     // MARK: View
+    
+    private let indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        indicator.color = .black
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -43,6 +52,13 @@ final class CharactersViewController: UIViewController {
         return label
     }()
     
+    private let menu: DropDown = {
+        let menu = DropDown()
+        menu.dataSource = [Constants.DropDown.Alive,
+                           Constants.DropDown.Dead]
+        return menu
+    }()
+    
     // MARK: Properties
     
     private var viewModel: CharactersViewModelProtocol?
@@ -69,12 +85,27 @@ final class CharactersViewController: UIViewController {
         
         title = "Rick And Morty"
   
+        indicator.startAnimating()
+        dataIsNotCatch()
+        
+        noResults.isHidden = true
+        
         navController()
         setUpDelegate()
         setUpView()
     }
     
     // MARK: Funcs
+    
+    func dataIsCatch() {
+        searchBar.isHidden = false
+        collectionView.isHidden = false
+    }
+    
+    func dataIsNotCatch() {
+        searchBar.isHidden = true
+        collectionView.isHidden = true
+    }
     
     func navController() {
 
@@ -85,6 +116,11 @@ final class CharactersViewController: UIViewController {
             action: #selector(clearFilter)
         )
         self.navigationItem.leftBarButtonItem?.isEnabled = false
+        
+        let filter = UIBarButtonItem(title: Constants.DropDown.Filter, style: .plain, target: self, action: #selector(statusSelected))
+        navigationItem.rightBarButtonItem = filter
+        
+        menu.anchorView = filter
     }
     
     func setUpDelegate() {
@@ -97,6 +133,7 @@ final class CharactersViewController: UIViewController {
     func setUpView() {
         noResults.isHidden = true
         view.backgroundColor = .white
+        view.addSubview(indicator)
         view.addSubview(noResults)
         view.addSubview(searchBar)
         view.addSubview(collectionView)
@@ -105,6 +142,13 @@ final class CharactersViewController: UIViewController {
     }
     
     func setUpConstraint() {
+        
+        indicator.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.centerY.equalTo(view.snp.centerY)
+            make.height.equalTo(50)
+            make.width.equalTo(50)
+        }
         
         noResults.snp.makeConstraints { make in
             make.centerX.equalTo(view.snp.centerX)
@@ -132,8 +176,21 @@ final class CharactersViewController: UIViewController {
     @objc func clearFilter() {
     
         updateData(characters: viewModel?.reloadCharacters ?? [])
-        navigationItem.rightBarButtonItem?.isEnabled = false
-        collectionView.isHidden = false
+        navigationItem.leftBarButtonItem?.isEnabled = false
+        indicator.stopAnimating()
+        dataIsCatch()
+    }
+    
+    @objc func statusSelected() {
+        menu.show()
+        
+        menu.selectionAction = { index, title in
+            let filter = title
+            self.viewModel?.fetchFilter(filter: filter)
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+            self.indicator.stopAnimating()
+            self.dataIsCatch()
+        }
     }
 }
 
@@ -147,13 +204,14 @@ extension CharactersViewController: UISearchBarDelegate {
          
          searchBar.endEditing(true)
          
-         viewModel?.fetchFilter(filter: searchBar.text)
+         viewModel?.fetchSearch(search: searchBar.text)
 
          searchBar.text = nil
      }
  }
 
 extension CharactersViewController: CharactersViewModelOutput {
+    
     func noResult() {
         collectionView.isHidden = true
         noResults.isHidden = false
@@ -163,10 +221,13 @@ extension CharactersViewController: CharactersViewModelOutput {
     func updateData(characters: [Character]) {
         delegateAndDataSource?.updateCollectionView(characters: characters)
         collectionView.reloadData()
+        indicator.stopAnimating()
+        dataIsCatch()
     }
 }
 
 extension CharactersViewController: CollectionViewDelegateAndDataSourceOutput {
+    
     func didSelectItem(id: Int?) {
         viewModel?.goToCharacterDetail(id: id ?? 0)
     }

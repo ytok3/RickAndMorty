@@ -169,11 +169,13 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         indicator.startAnimating()
-        dataIsCatch()
+        dataIsNotCatch()
         
         setUpView()
         setUpConstraint()
     }
+    
+    // MARK: Funcs
     
     func dataIsCatch() {
         characterImage.isHidden = false
@@ -203,28 +205,25 @@ class DetailViewController: UIViewController {
         verticalStack.addSubview(lastSeenEpisodeAirDate)
         
         characterImage.layer.cornerRadius = 5
-        
     }
     
     func configureCharacter(character: CharacterDetail) {
         
         self.characterImage.af.setImage(withURL: URL(string: character.image!)!)
         self.name.text = (character.name)
-        self.status.text = Constants.Strings.Status + (character.status!)
-        self.species.text = Constants.Strings.Species + (character.species!)
-        self.numberOfEpisodes.text = Constants.Strings.Episodes + "\(character.episode?.count ?? 0)"
-        self.gender.text = Constants.Strings.Gender + (character.gender!)
-        self.originLocation.text = Constants.Strings.Origin_Location + (character.origin?.name!)!
-        self.lastKnownLocation.text = Constants.Strings.Known_Location + (character.location?.name!)!
-        
+        self.status.text = Constants.DetailStrings.Status + (character.status!)
+        self.species.text = Constants.DetailStrings.Species + (character.species!)
+        self.numberOfEpisodes.text = Constants.DetailStrings.Episodes + "\(character.episode?.count ?? 0)"
+        self.gender.text = Constants.DetailStrings.Gender + (character.gender!)
+        self.originLocation.text = Constants.DetailStrings.Origin_Location + (character.origin?.name!)!
+        self.lastKnownLocation.text = Constants.DetailStrings.Known_Location + (character.location?.name!)!
     }
     
     func configureEpisode(episode: Episode) {
         
-        self.lastSeenEpisode.text = Constants.Strings.Last_Episodes
-        self.lastSeenEpisodeName.text = Constants.Strings.Last_Episodes_Name + (episode.name!)
-        self.lastSeenEpisodeAirDate.text = Constants.Strings.Last_Episodes_Air_Date + (episode.airDate ?? "")
-        
+        self.lastSeenEpisode.text = Constants.DetailStrings.Last_Episodes
+        self.lastSeenEpisodeName.text = Constants.DetailStrings.Last_Episodes_Name + (episode.name!)
+        self.lastSeenEpisodeAirDate.text = Constants.DetailStrings.Last_Episodes_Air_Date + (episode.airDate ?? "")
     }
     
     func setUpConstraint() {
@@ -294,7 +293,7 @@ class DetailViewController: UIViewController {
     }
 }
 
-// MARK: Extension
+// MARK: Extensions
 
 extension DetailViewController: DetailViewModelOutput {
     

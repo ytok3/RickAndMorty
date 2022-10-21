@@ -9,5 +9,6 @@ target 'RickAndMortyApp' do
   pod 'Alamofire', '~> 5.5'
   pod 'AlamofireImage', '~> 4.1'
   pod 'SnapKit', '~> 5.0.0'
+  pod 'DropDown'
 
 end

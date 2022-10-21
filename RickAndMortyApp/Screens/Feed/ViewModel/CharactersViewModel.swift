@@ -16,6 +16,7 @@ protocol CharactersViewModelProtocol {
     var output: CharactersViewModelOutput? {get set}
     var reloadCharacters: [Character] {get set}
     func fetchCharacters()
+    func fetchSearch(search: String?)
     func fetchFilter(filter: String?)
     func goToCharacterDetail(id: Int)
 }
@@ -49,6 +50,17 @@ class  CharactersViewModel: CharactersViewModelProtocol {
                 self.output?.updateData(characters: charactersList.results ?? [])
             case .failure(let error):
                 print(error.localizedDescription)
+            }
+        })
+    }
+    
+    func fetchSearch(search: String?) {
+        service?.fetch(url: Constants.generateSearch(with: search!)!, completion: { (response: Result<CharacterList, Error>) in
+            switch response {
+            case .success(let charactersList):
+                self.output?.updateData(characters: charactersList.results ?? [])
+            case .failure:
+                self.output?.noResult()
             }
         })
     }
