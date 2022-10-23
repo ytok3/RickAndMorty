@@ -84,9 +84,6 @@ final class CharactersViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Rick And Morty"
-  
-        indicator.startAnimating()
-        dataIsNotCatch()
         
         noResults.isHidden = true
         
@@ -98,19 +95,14 @@ final class CharactersViewController: UIViewController {
     // MARK: Funcs
     
     func dataIsCatch() {
-        searchBar.isHidden = false
+        indicator.stopAnimating()
         collectionView.isHidden = false
-    }
-    
-    func dataIsNotCatch() {
-        searchBar.isHidden = true
-        collectionView.isHidden = true
     }
     
     func navController() {
 
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(
-            title: Constants.Strings.Cancel_Filter,
+            title: Constants.Strings.Clear_Filter,
             style: .plain,
             target: self,
             action: #selector(clearFilter)
@@ -174,10 +166,9 @@ final class CharactersViewController: UIViewController {
     }
     
     @objc func clearFilter() {
-    
+        
         updateData(characters: viewModel?.reloadCharacters ?? [])
         navigationItem.leftBarButtonItem?.isEnabled = false
-        indicator.stopAnimating()
         dataIsCatch()
     }
     
@@ -188,31 +179,38 @@ final class CharactersViewController: UIViewController {
             let filter = title
             self.viewModel?.fetchFilter(filter: filter)
             self.navigationItem.leftBarButtonItem?.isEnabled = true
-            self.indicator.stopAnimating()
             self.dataIsCatch()
         }
     }
 }
 
-// MARK: Extensions
+// MARK: - UISearchBarDelegate
 
 extension CharactersViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        indicator.startAnimating()
+        collectionView.isHidden = true
+        noResults.isHidden = true
+    }
 
      func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
          
-         navigationItem.leftBarButtonItem?.isEnabled = true
-         
          searchBar.endEditing(true)
+         
+         navigationItem.leftBarButtonItem?.isEnabled = true
          
          viewModel?.fetchSearch(search: searchBar.text)
 
          searchBar.text = nil
-     }
- }
+    }
+}
+// MARK: - CharactersViewModelOutput
 
 extension CharactersViewController: CharactersViewModelOutput {
     
     func noResult() {
+        indicator.stopAnimating()
         collectionView.isHidden = true
         noResults.isHidden = false
         navigationItem.leftBarButtonItem?.isEnabled = true
@@ -220,11 +218,13 @@ extension CharactersViewController: CharactersViewModelOutput {
     
     func updateData(characters: [Character]) {
         delegateAndDataSource?.updateCollectionView(characters: characters)
-        collectionView.reloadData()
-        indicator.stopAnimating()
         dataIsCatch()
+        collectionView.reloadData()
+        collectionView.setContentOffset(CGPoint.zero, animated: true)
     }
 }
+
+// MARK: - CollectionViewDelegateAndDataSourceOutput
 
 extension CharactersViewController: CollectionViewDelegateAndDataSourceOutput {
     

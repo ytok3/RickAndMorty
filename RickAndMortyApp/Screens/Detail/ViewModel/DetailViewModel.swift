@@ -42,7 +42,7 @@ class DetailViewModel: DetailViewModelProtocol {
     // MARK: Funcs
     
     func fetchDetail(id: Int?) {
-        service?.fetch(url: Constants.generateDetail(with: id!)!, completion: { (response: Result<CharacterDetail, Error>) in
+        service?.fetch(url: Constants.generateDetail(with: id ?? 0), completion: { (response: Result<CharacterDetail, Error>) in
             switch response {
             case .success(let characterDetail):
                 self.output?.selectCharacter(character: characterDetail)
@@ -54,7 +54,7 @@ class DetailViewModel: DetailViewModelProtocol {
     }
     
     func lastEpisodeUrl(lastEpisode: String?) {
-        let episodeUrl = URL(string: lastEpisode!)!
+        let episodeUrl = URL(string: lastEpisode ?? "")
         service?.fetch(url: episodeUrl, completion: { (response: Result<Episode, Error>) in
             switch response {
             case .success(let episodeDetail):

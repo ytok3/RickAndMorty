@@ -15,7 +15,7 @@ enum HttpError: Error {
 }
 
 protocol ServiceManagerProtocol: AnyObject {
-    func fetch<T: Codable>(url: URL, completion: @escaping resultClosure<T>)
+    func fetch<T: Codable>(url: URL?, completion: @escaping resultClosure<T>)
 }
 
 class ServiceManager: ServiceManagerProtocol {
@@ -30,9 +30,9 @@ class ServiceManager: ServiceManagerProtocol {
         self.afSession = afSession
     }
     
-    func fetch<T>(url: URL, completion: @escaping resultClosure<T>) where T : Decodable, T : Encodable {
+    func fetch<T>(url: URL?, completion: @escaping resultClosure<T>) where T : Decodable, T : Encodable {
         
-        afSession.request(url, method: .get).validate().responseDecodable(of: T.self) { results in
+        afSession.request(url ?? "", method: .get).validate().responseDecodable(of: T.self) { results in
             
             if results.response?.statusCode == 400 {
                 return completion(.failure(HttpError.badRequest))

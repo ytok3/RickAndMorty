@@ -43,7 +43,7 @@ class  CharactersViewModel: CharactersViewModelProtocol {
     // MARK: Funcs
     
     func fetchCharacters() {
-        service?.fetch(url: Constants.generateURL()!, completion: { (response: Result<CharacterList, Error>) in
+        service?.fetch(url: Constants.generateURL(), completion: { (response: Result<CharacterList, Error>) in
             switch response {
             case .success(let charactersList):
                 self.reloadCharacters = charactersList.results ?? []
@@ -55,7 +55,7 @@ class  CharactersViewModel: CharactersViewModelProtocol {
     }
     
     func fetchSearch(search: String?) {
-        service?.fetch(url: Constants.generateSearch(with: search!)!, completion: { (response: Result<CharacterList, Error>) in
+        service?.fetch(url: Constants.generateSearch(with: search ?? ""), completion: { (response: Result<CharacterList, Error>) in
             switch response {
             case .success(let charactersList):
                 self.output?.updateData(characters: charactersList.results ?? [])
@@ -66,7 +66,7 @@ class  CharactersViewModel: CharactersViewModelProtocol {
     }
     
     func fetchFilter(filter: String?) {
-        service?.fetch(url: Constants.generateFilter(with: filter!)!, completion: { (response: Result<CharacterList, Error>) in
+        service?.fetch(url: Constants.generateFilter(with: filter ?? ""), completion: { (response: Result<CharacterList, Error>) in
             switch response {
             case .success(let charactersList):
                 self.output?.updateData(characters: charactersList.results ?? [])

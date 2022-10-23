@@ -9,8 +9,9 @@ import Foundation
 
 extension Constants {
     class DropDown {
-        static let Filter  = "Status Filter"
         
+        static let Filter  = "Status Filter"
+    
         static let Alive  = "Alive"
         static let Dead  = "Dead"
     }

@@ -25,7 +25,7 @@ class CollectionViewDelegateAndDataSource: NSObject {
     }
 }
 
-// MARK: Extensions
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 
 extension CollectionViewDelegateAndDataSource: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     

@@ -17,6 +17,8 @@ struct Constants {
     static let EPISODE = "/episode"
 }
 
+// MARK: Extensions
+
 extension Constants {
     static func generateURL() -> URL? {
         URL(string: BASE_URL + CHARACTERS)

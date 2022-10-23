@@ -293,7 +293,7 @@ class DetailViewController: UIViewController {
     }
 }
 
-// MARK: Extensions
+// MARK: - DetailViewModelOutput
 
 extension DetailViewController: DetailViewModelOutput {
     
